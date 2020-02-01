@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# Title:         Cross-Platform wallpaper changer
+# Author:        H8CK3R
+# Version:       1.0
+# Target:        OSX/LINUX/WINDOWS
+#
+#The script changes the users background to "$SWITCH_POSITION/background.jpg"
+
+source bunny_helpers.sh
+source mac_happy.sh
+
+LED SETUP
+
+MAC_HAPPY ATTACKMODE HID STORAGE
+
+GET TARGET_OS
+
+LED ATTACK
+
+case "$TARGET_OS" in
+	"LINUX")
+		RUN UNITY gedit
+		;;
+	"MACOS")
+		RUN OSX terminal
+		Q DELAY 100
+		Q STRING osascript -e \'tell application \"Finder\" to set desktop picture to POSIX file \"/Volumes/BashBunny/payloads/$SWITCH_POSITION/background.jpg\"\'
+		Q DELAY 50
+		Q ENTER
+		;;
+	"WINDOWS")
+		RUN WIN cmd.exe
+		Q DELAY 100
+		Q STRING powershell -windowstyle hidden ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\1.ps1')"
+		Q DELAY 50
+		Q ENTER
+		;;
+	*)
+		LED FAIL
+		exit 1
+		;;
+esac
+
+LED FINISH

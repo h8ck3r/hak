@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Title:         Blue Team PC Audit
+# Author:        H8CK3R
+# Version:       1.0
+# Target:        OSX
+# 
+
+DUCKY_LANG de
+
+source bunny_helpers.sh
+source mac_happy.sh
+
+LED SETUP
+
+MAC_HAPPY ATTACKMODE HID STORAGE
+
+LED ATTACK
+Q DELAY 200
+Q GUI SPACE
+Q DELAY 200
+Q STRING terminal
+Q DELAY 100
+Q ENTER
+Q DELAY 200
+Q STRING osascript -e \'tell application \"Finder\" to set desktop picture to POSIX file \"/Volumes/BashBunny/payloads/$SWITCH_POSITION/background.jpg\"\'
+Q ENTER
+
+LED FINISH
